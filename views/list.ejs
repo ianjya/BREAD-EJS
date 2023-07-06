@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREAD App - List</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>BREAD App User List</h1>
+        <a href="/" class="btn btn-primary btn-sm ">Home</a>
+      </div>
+
+      <div class="container">
+        <h3>Filter</h3>
+        <form action="/add" method="post">
+          <div class="mb-3 row">
+            <label for="stringField" class="col-sm-2 col-form-label">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="stringFieldCheckbox">
+                <label class="form-check-label" for="stringFieldCheckbox"></label>
+              </div>
+              String Field
+            </label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                id="stringField"
+                name="stringField"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="integerField" class="col-sm-2 col-form-label">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="integerFieldCheckbox">
+                <label class="form-check-label" for="integerFieldCheckbox"></label>
+              </div>
+              Integer Field
+            </label>
+            <div class="col-sm-10">
+              <input
+                type="number"
+                id="integerField"
+                name="integerField"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="floatField" class="col-sm-2 col-form-label">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="floatFieldCheckbox">
+                <label class="form-check-label" for="floatFieldCheckbox"></label>
+              </div>
+              Float Field
+            </label>
+            <div class="col-sm-10">
+              <input
+                type="number"
+                step="any"
+                id="floatField"
+                name="floatField"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="dateField" class="col-sm-2 col-form-label">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="dateFieldCheckbox">
+                <label class="form-check-label" for="dateFieldCheckbox"></label>
+              </div>
+              Date Field
+            </label>
+            <div class="col-sm-10">
+              <input
+                type="date"
+                id="dateField"
+                name="dateField"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="booleanField" class="col-sm-2 col-form-label">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="booleanFieldCheckbox">
+                <label class="form-check-label" for="booleanFieldCheckbox"></label>
+              </div>
+              Boolean Field
+            </label>
+            <div class="col-sm-10">
+              <select
+                id="booleanField"
+                name="booleanField"
+                class="form-select"
+                required
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-flex justify-content-start">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </form>
+      </div>
+      
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>String</th>
+          <th>Integer</th>
+          <th>Float</th>
+          <th>Date</th>
+          <th>Boolean</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach((user, index) => { %>
+          
+        <tr>
+          <th scope="row"><%=   index + 1 %></th>
+          <td><%= user.stringField %></td>
+          <td><%= user.integerField %></td>
+          <td><%= user.floatField %></td>
+          <td><%= user.dateField %></td>
+          <td><%= user.booleanField %></td>
+          <td>
+            <a href="/edit/<%= index %>" class="btn btn-outline-primary btn-sm "
+              >Edit</a
+            >
+            <a href="/delete/<%= index %>" class="btn btn-outline-danger btn-sm "
+              >Delete</a
+            >
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="d-flex justify-content-start">
+      <a href="/add" class="btn btn-outline-secondary btn-sm ">Add User</a>
+    </div>
+  </body>
+</html>
